@@ -1,4 +1,3 @@
-"""A tic-tac-toe game built with Python and Tkinter."""
 
 import tkinter as tk
 from itertools import cycle
@@ -17,15 +16,15 @@ class Move(NamedTuple):
     label: str = ""
 
 
-BOARD_SIZE = 3
+BD_Size = 5
 DEFAULT_PLAYERS = (
-    Player(label="X", color="blue"),
+    Player(label="X", color="yellow"),
     Player(label="O", color="green"),
 )
 
 
 class TicTacToeGame:
-    def __init__(self, players=DEFAULT_PLAYERS, board_size=BOARD_SIZE):
+    def __init__(self, players=DEFAULT_PLAYERS, board_size=BD_Size):
         self._players = cycle(players)
         self.board_size = board_size
         self.current_player = next(self._players)
@@ -138,7 +137,7 @@ class TicTacToeBoard(tk.Tk):
                     font=font.Font(size=36, weight="bold"),
                     fg="black",
                     width=3,
-                    height=2,
+                    height=1,
                     highlightbackground="lightblue",
                 )
                 self._cells[button] = (row, col)
@@ -154,7 +153,7 @@ class TicTacToeBoard(tk.Tk):
             self._update_button(clicked_btn)
             self._game.process_move(move)
             if self._game.is_tied():
-                self._update_display(msg="Tied game!", color="red")
+                self._update_display(msg="Tied game!", color="pink")
             elif self._game.has_winner():
                 self._highlight_cells()
                 msg = f'Player "{self._game.current_player.label}" won!'
